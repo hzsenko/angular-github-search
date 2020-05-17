@@ -1,0 +1,31 @@
+<div *ngIf="repo; else elseBlock" class="repo">
+  <h1>Репозиторий {{repo.name}}</h1>
+  <mat-card class="repo-card">
+    <mat-card-header>
+      <div mat-card-avatar class="repo-header-image">
+        <img [src]="repo.owner.avatar_url" [alt]="repo.name">
+      </div>
+      <mat-card-title>{{repo.owner.login}}</mat-card-title>
+      <mat-card-subtitle>{{repo.full_name}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{repo.description}}</p>
+      <p>Количество звезд: {{repo.stargazers_count}}</p>
+      <p>Открытые задачи: {{repo.open_issues}}</p>
+      <p><a [href]="repo.html_url" target="_blank">Домашняя страница</a></p>
+      <button
+        color="primary"
+        (click)="back()"
+        mat-raised-button>Назад</button>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #elseBlock>
+  <div class="repo">
+    <div class="empty">Информация не найдена</div>
+    <button
+      color="primary"
+      (click)="back()"
+      mat-raised-button>Назад</button>
+  </div>
+</ng-template>

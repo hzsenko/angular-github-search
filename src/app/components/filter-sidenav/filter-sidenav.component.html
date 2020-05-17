@@ -1,0 +1,21 @@
+<div class="filter-sidenav">
+  <h1>Фильтр</h1>
+  <form [formGroup]="form" novalidate (ngSubmit)="filter()">
+    <mat-form-field>
+      <mat-label>Тип репозитория</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of repoTypes" [value]="type">
+          {{enums.repoTypes[type]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox formControlName="archived">Архив</mat-checkbox>
+    <div class="filter-action">
+      <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="form.disabled || form.pristine || !repos.length">Применить</button>
+    </div>
+  </form>
+</div>
